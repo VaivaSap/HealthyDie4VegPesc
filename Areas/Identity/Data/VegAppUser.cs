@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using VegApp.Entities;
 
 namespace VegApp.Areas.Identity.Data
 {
@@ -12,7 +13,16 @@ namespace VegApp.Areas.Identity.Data
         public int Age { get; set; }
 
         public decimal Weight { get; set; }
-    }
+
+        public List<Product> Products { get; set; } = new List<Product>();
+
+   }
+
+
+
+
+
+
 }
 
 
