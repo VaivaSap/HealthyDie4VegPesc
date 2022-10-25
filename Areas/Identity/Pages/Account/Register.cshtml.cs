@@ -137,7 +137,7 @@ namespace VegApp.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-                user.UserName = Input.Name;
+                user.Name = Input.Name;
                 user.Age = Input.Age;
                 user.Weight = Input.Weight;
                 user.Gender = Input.Gender;
