@@ -1,0 +1,24 @@
+﻿@page
+@model AddNewProductModel
+@{
+    ViewData["Title"] = "New Product";
+}
+<h1>@ViewData["Title"]</h1>
+<h6>Looking for something else? Add a new product yourself</h6>
+
+
+<form method="post">
+    <label for="title">Title:</label><br>
+    <input asp-for="Title" type="text" placeholder="Title" id="title" name="title"><br>
+    <label for="protein">Proteins in 100 g:</label><br>
+    <input asp-for="ProteinsIn100g" type="number" id="proteins" name="proteins"><br>
+    <label for="fats">Fats in 100 g:</label><br>
+    <input asp-for="FatsIn100g"  type="number" id="fats" name="fats"><br>
+    <label for="carbs">Carbs in 100 g:</label><br>
+    <input asp-for="CarbsIn100g"  type="number" id="carbs" name="carbs"><br>
+    <label for="calories">Calories in 100 g:</label><br>
+    <input asp-for="CaloriesIn100g"  type="number" id="calories" name="calories"><br><br>
+
+
+    <button id="addSubmit" type="submit">Add</button>
+</form>
