@@ -1,4 +1,5 @@
 ﻿@page
+@using VegApp.Entities
 @model IndexModel
 @{
     ViewData["Title"] = "Home";
@@ -15,12 +16,12 @@
   
 
   <label for="products">Choose a product:</label>
-  <select name="products" id="products">
-    <option value="Artichokes">Artichokes</option>
-    <option value="Beans">Beans</option>
-    <option value="Carrots">Carrots</option>
-    <option value="Garlic">Garlic</option>
-  </select>
+  
+   <select asp-for="SelectedProduct" class="select"
+                asp-items="@(new SelectList(Model.Products, nameof(Product.Id), nameof(Product.ProductName)))">
+          
+                </select>
+
   <br>
  <br>
   Add grams:
@@ -30,3 +31,4 @@
 </form>
 
 </div>
+
