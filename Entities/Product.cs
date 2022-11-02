@@ -16,6 +16,10 @@ namespace VegApp.Entities
 
         public VegAppUser VegAppUser { get; set; }
 
+        public List<EatenProduct> EatenProducts { get; set; }
+
+
+
 
     }
 }

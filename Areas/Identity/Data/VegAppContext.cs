@@ -16,12 +16,17 @@ public class VegAppContext : IdentityDbContext<VegAppUser, UserRole, Guid>
     }
 
 
+
     public DbSet<Product> Products { get; set; }
+
+    public DbSet<EatenProduct> EatenProducts { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
         builder.Entity<VegAppUser>().HasMany(u => u.Products).WithOne(c => c.VegAppUser);
+
+        builder.Entity<Product>().HasMany(p => p.EatenProducts).WithOne(g => g.Product);
 
     }
 }

@@ -14,21 +14,24 @@ namespace VegApp.Pages
 
         private readonly VegAppContext _vegAppContext;
 
-        public Product SelectedProduct { get; set; }
-
+        [BindProperty]
+        public Guid SelectedProductId { get; set; }
+        [BindProperty]
+        public DateTime DateWhenEaten { get; set; }
+        [BindProperty]
+        public int Amount { get; set; }
 
 
         public List<Product> Products { get; set; } = new List<Product>();
 
 
+
+        //Dependency injection (constructor with parameters)
         public IndexModel(ILogger<IndexModel> logger, VegAppContext vegAppContext)
         {
             _logger = logger;
             _vegAppContext = vegAppContext;
         }
-
-
-
 
 
         public void OnGet()
@@ -40,6 +43,23 @@ namespace VegApp.Pages
         }
 
 
+        public void OnPost()
+        {
+            var eatenProduct = new EatenProduct()
+            {
+                EatenProductId = Guid.NewGuid(),
+                Product = _vegAppContext.Products.FirstOrDefault(s => s.Id == SelectedProductId),
+                DateWhenEaten = DateWhenEaten,
+
+                Amount = Amount,
+            };
+
+
+            _vegAppContext.EatenProducts.Add(eatenProduct);
+
+            _vegAppContext.SaveChanges();
+        }
     }
 }
+
 

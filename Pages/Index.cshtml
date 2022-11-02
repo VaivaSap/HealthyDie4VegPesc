@@ -10,22 +10,23 @@
     <p>Your new favourite app for vegetarians & pescatarians!</p>
 
       <p>
-<form action="">
+<form method="post">
   <label for="date">Select date:</label>
-  <input type="date" id="date" name="date">
-  
+  <input asp-for="DateWhenEaten" type="date" id="DateWhenEaten" name="DateWhenEaten"  >
+     
+     
 
   <label for="products">Choose a product:</label>
   
-   <select asp-for="SelectedProduct" class="select"
+   <select asp-for="SelectedProductId" class="select"
                 asp-items="@(new SelectList(Model.Products, nameof(Product.Id), nameof(Product.ProductName)))">
           
                 </select>
 
   <br>
  <br>
-  Add grams:
-  <input type="text" id="grams" name="grams"><br>
+  <label for="Amount">Add grams:</label>
+  <input asp-for="Amount" type="number" id="Amount" name="Amount"><br>
     <br>
   <input type="submit" value="Submit">
 </form>
