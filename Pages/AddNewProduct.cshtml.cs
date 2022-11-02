@@ -50,7 +50,7 @@ namespace VegApp.Pages
                 CarbsIn100g = CarbsIn100g,
                 FatsIn100g = CaloriesIn100g,
                 CaloriesIn100g = CaloriesIn100g,
-                VegAppUser = user
+                VegAppUser = user,
 
         };
 
