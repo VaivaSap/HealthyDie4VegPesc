@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 using VegApp.Areas.Identity.Data;
 using VegApp.Data;
 
@@ -45,14 +46,13 @@ namespace VegApp.Pages
         public void OnGet()
         {
 
-            //Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid id);
-            //Products = _vegAppContext.Products.Where(u => u.VegAppUser.Id == id).ToList();
+            Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid id);
 
 
-            DailyProteins = _vegAppContext.EatenProducts.Sum(e => e.Product.ProteinsIn100g * e.Amount / 100);
-            DailyCarbs = _vegAppContext.EatenProducts.Sum(e => e.Product.CarbsIn100g * e.Amount / 100);
-            DailyFats = _vegAppContext.EatenProducts.Sum(e => e.Product.FatsIn100g * e.Amount / 100);
-            DailyCalories = _vegAppContext.EatenProducts.Sum(e => e.Product.CaloriesIn100g * e.Amount / 100); 
+            DailyProteins = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.ProteinsIn100g * e.Amount / 100);
+            DailyCarbs = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.CarbsIn100g * e.Amount / 100);
+            DailyFats = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.FatsIn100g * e.Amount / 100);
+            DailyCalories = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.CaloriesIn100g * e.Amount / 100); 
 
         }
 
