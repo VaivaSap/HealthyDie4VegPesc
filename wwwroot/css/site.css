@@ -1,6 +1,13 @@
 html {
   font-size: 14px;
 }
+body {
+    background-image: url("https://img.freepik.com/free-photo/vegetables-arrangement-with-copy-space_23-2148949685.jpg?w=2000&t=st=1667585274~exp=1667585874~hmac=c77acd3764277608ad2823e6d015cd23448199e14b37ee31fd0fe36f378c54ca");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+{
+    
 
 @media (min-width: 768px) {
   html {
