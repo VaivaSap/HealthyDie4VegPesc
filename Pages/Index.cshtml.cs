@@ -17,7 +17,7 @@ namespace VegApp.Pages
         [BindProperty]
         public Guid SelectedProductId { get; set; }
         [BindProperty]
-        public DateTime DateWhenEaten { get; set; }
+        public DateTime DateWhenEaten { get; set; } 
         [BindProperty]
         public int Amount { get; set; }
 
@@ -39,6 +39,7 @@ namespace VegApp.Pages
 
             Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid id);
             Products = _vegAppContext.Products.Where(u => u.VegAppUser.Id == id).ToList();
+            DateWhenEaten = DateTime.Today;
 
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VegApp;
 using VegApp.Data;
+using VegApp.Entities;
 
 namespace VegApp.Pages
 {
@@ -15,7 +17,7 @@ namespace VegApp.Pages
     {
         private readonly VegApp.Data.VegAppContext _context;
 
-        
+
         public EditProductsModel(VegApp.Data.VegAppContext context)
         {
             _context = context;
@@ -32,12 +34,13 @@ namespace VegApp.Pages
                 return NotFound();
             }
 
-            var eatenproduct =  await _context.EatenProducts.FirstOrDefaultAsync(m => m.EatenProductId == id);
+            var eatenproduct = await _context.EatenProducts.Include(p => p.Product).FirstOrDefaultAsync(m => m.EatenProductId == id);
             if (eatenproduct == null)
             {
                 return NotFound();
             }
             EatenProduct = eatenproduct;
+
             return Page();
         }
 
@@ -45,12 +48,18 @@ namespace VegApp.Pages
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            ModelState.Remove("EatenProduct.Product.VegAppUser");
+            ModelState.Remove("EatenProduct.Product.EatenProducts");
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(EatenProduct).State = EntityState.Modified;
+            //Changes here
+
+            var editedEatenProduct = _context.EatenProducts.FirstOrDefault(a => a.EatenProductId == EatenProduct.EatenProductId);
+            editedEatenProduct.Amount = EatenProduct.Amount;
+            editedEatenProduct.DateWhenEaten = EatenProduct.DateWhenEaten;
 
             try
             {
@@ -66,14 +75,16 @@ namespace VegApp.Pages
                 {
                     throw;
                 }
+
+
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./History");
         }
 
         private bool EatenProductExists(Guid id)
         {
-          return _context.EatenProducts.Any(e => e.EatenProductId == id);
+            return _context.EatenProducts.Any(e => e.EatenProductId == id);
         }
     }
 }
