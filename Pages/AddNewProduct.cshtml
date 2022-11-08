@@ -9,17 +9,25 @@
 
 <form method="post">
     <label for="title">Title:</label><br>
-    <input asp-for="Title" type="text" placeholder="Title" id="title" name="title"><br>
+    <input asp-for="Title" type="text" placeholder="Title" id="title"><br>
     <label for="proteins">Proteins in 100 g:</label><br>
-    <input asp-for="ProteinsIn100g" type="number" id="proteins" name="proteins"><br>
+    <input asp-for="ProteinsIn100g" type="number" id="proteins"><br>
     <label for="fats">Fats in 100 g:</label><br>
-    <input asp-for="FatsIn100g"  type="number" id="fats" name="fats"><br>
+    <input asp-for="FatsIn100g"  type="number" id="fats"><br>
     <label for="carbs">Carbs in 100 g:</label><br>
-    <input asp-for="CarbsIn100g"  type="number" id="carbs" name="carbs"><br>
+    <input asp-for="CarbsIn100g"  type="number" id="carbs"><br>
     <label for="calories">Calories in 100 g:</label><br>
-    <input asp-for="CaloriesIn100g"  type="number" id="calories" name="calories"><br><br>
+    <input asp-for="CaloriesIn100g"  type="number" id="calories"><br><br>
 
 
     <button id="addSubmit" type="submit">Add</button>
 </form>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 

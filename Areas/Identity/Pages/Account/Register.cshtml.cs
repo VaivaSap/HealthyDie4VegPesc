@@ -82,6 +82,7 @@ namespace VegApp.Areas.Identity.Pages.Account
             public string Name { get; set; }
 
             [Required]
+            [BindProperty]
             [Display(Name = "Gender")]
             public GenderEnum Gender { get; set; }
 
