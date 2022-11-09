@@ -17,7 +17,7 @@ namespace VegApp.Pages
         [BindProperty]
         public Guid SelectedProductId { get; set; }
         [BindProperty]
-        public DateTime DateWhenEaten { get; set; } 
+        public DateTime DateWhenEaten { get; set; }
         [BindProperty]
         public int Amount { get; set; }
 
@@ -44,7 +44,9 @@ namespace VegApp.Pages
         }
 
 
-        public void OnPost()
+
+
+        public RedirectToPageResult OnPost()
         {
             var eatenProduct = new EatenProduct()
             {
@@ -53,12 +55,15 @@ namespace VegApp.Pages
                 DateWhenEaten = DateWhenEaten,
 
                 Amount = Amount,
+
             };
 
 
             _vegAppContext.EatenProducts.Add(eatenProduct);
 
             _vegAppContext.SaveChanges();
+
+            return RedirectToPage("/Index");
         }
     }
 }

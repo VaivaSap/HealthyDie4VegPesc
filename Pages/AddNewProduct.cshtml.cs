@@ -36,7 +36,7 @@ namespace VegApp.Pages
 
         }
 
-        public void OnPost()
+        public RedirectToPageResult OnPost()
         {
             Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid id);
 
@@ -52,11 +52,13 @@ namespace VegApp.Pages
                 CaloriesIn100g = CaloriesIn100g,
                 VegAppUser = user,
 
-        };
-
+            };
+          
             _vegAppContext.Products.Add(product);
-         
+
             _vegAppContext.SaveChanges();
+
+            return RedirectToPage("/Index");
         }
 
     }

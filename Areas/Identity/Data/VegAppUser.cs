@@ -14,9 +14,13 @@ namespace VegApp.Areas.Identity.Data
 
         public decimal Weight { get; set; }
 
+        public enum Group { get, set, }
+
         public List<Product> Products { get; set; } = new List<Product>();
 
-   }
+
+
+    }
 
 
 
