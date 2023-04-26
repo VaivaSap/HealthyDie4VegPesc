@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/VegApp.styles.css" asp-append-version="true" />
+
+  @*bandymas *@
+  <link rel="stylesheet" href="~/lib/chartjs/Chart.css" />
     
    
 </head>
@@ -63,4 +66,6 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+@*Bandymas*@
+<script src="~/lib/chartjs/Chart.min.js" asp-append-version="true"></script>
 </html>

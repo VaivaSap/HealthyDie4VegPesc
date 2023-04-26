@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using VegApp.Areas.Identity.Data;
 using VegApp.Data;
@@ -27,7 +28,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+
+    app.UseRouting();
 app.UseAuthentication();;
 
 app.UseAuthorization();

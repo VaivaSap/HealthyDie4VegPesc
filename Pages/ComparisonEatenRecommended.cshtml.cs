@@ -52,7 +52,15 @@ namespace VegApp.Pages
             DailyProteins = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.ProteinsIn100g * e.Amount / 100);
             DailyCarbs = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.CarbsIn100g * e.Amount / 100);
             DailyFats = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.FatsIn100g * e.Amount / 100);
-            DailyCalories = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.CaloriesIn100g * e.Amount / 100); 
+            DailyCalories = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.CaloriesIn100g * e.Amount / 100);
+
+            //Dummy data
+            RecommendedDailyProteins = 10;
+            RecommendedDailyFats = 15;
+            RecommendedDailyCarbs = 20;
+            RecommendedDailyCalories = 2200;
+
+
 
         }
 
