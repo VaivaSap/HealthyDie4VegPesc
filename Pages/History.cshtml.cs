@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using VegApp;
 using VegApp.Data;
 using VegApp.Entities;
+using VegApp.Migrations;
 
 namespace VegApp.Pages
 {
@@ -20,14 +22,47 @@ namespace VegApp.Pages
             _context = context;
         }
 
-        public IList<EatenProduct> EatenProduct { get;set; } = default!;
+        public IList<IGrouping<string, EatenProductDisplay>> eatenProduct { get; set; } = default!;
+
+
 
         public async Task OnGetAsync()
         {
             if (_context.EatenProducts != null)
             {
-                EatenProduct = await _context.EatenProducts.Include(j => j.Product).ToListAsync();
+                eatenProduct = _context.EatenProducts
+
+                    .Include(j => j.Product)
+
+                    .OrderBy(p => p.DateWhenEaten)
+                    .Select(z => new EatenProductDisplay(z))
+                    .AsEnumerable()
+                    .GroupBy(o => o.DateWhenEatenForDisplay)
+                    .ToList();
             }
+
+        }
+    }
+
+    public class EatenProductDisplay
+
+    {
+        public Guid EatenProductId { get; set; }
+
+        public Product Product { get; set; }
+
+        public string DateWhenEatenForDisplay { get; set; }
+
+        public int Amount { get; set; }
+
+
+        public EatenProductDisplay(EatenProduct product)
+        {
+            EatenProductId = product.EatenProductId;
+            Product = product.Product;
+            DateWhenEatenForDisplay = product.DateWhenEaten.ToString("yyyy-MM-dd");
+            Amount = product.Amount;
         }
     }
 }
+

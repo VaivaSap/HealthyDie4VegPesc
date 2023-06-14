@@ -22,21 +22,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.EatenProduct)
+        @foreach (var item in Model.eatenProduct)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateWhenEaten)
+                    @Html.DisplayFor(modelItem => item.First().DateWhenEatenForDisplay)
                 </td>
                 <td>
-                    @Html.DisplayFor(nodelItem => item.Product.ProductName)
+                    @Html.DisplayFor(nodelItem => item.First().Product.ProductName)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.First().Amount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                <td>
-                    <a asp-page="./EditProducts" asp-route-id="@item.EatenProductId">Edit</a> |
-                    <a asp-page="./DeleteProducts" asp-route-id="@item.EatenProductId">Delete</a>
+                    <a asp-page="./EditProducts" asp-route-id="@item.First().EatenProductId">Edit</a> |
+                    <a asp-page="./DeleteProducts" asp-route-id="@item.First().EatenProductId">Delete</a>
                 </td>
             </tr>
         }
