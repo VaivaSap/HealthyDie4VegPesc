@@ -25,7 +25,9 @@
         @foreach (var item in Model.eatenProduct)
         {
             <tr>
+
                 <td>
+                   
                     @Html.DisplayFor(modelItem => item.First().DateWhenEatenForDisplay)
                 </td>
                 <td>
@@ -36,6 +38,8 @@
                     @Html.DisplayFor(modelItem => item.First().Amount)
                 </td>
                 <td>
+
+                     
                     <a asp-page="./EditProducts" asp-route-id="@item.First().EatenProductId">Edit</a> |
                     <a asp-page="./DeleteProducts" asp-route-id="@item.First().EatenProductId">Delete</a>
                 </td>

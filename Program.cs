@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using VegApp;
 using VegApp.Areas.Identity.Data;
 using VegApp.Data;
 var builder = WebApplication.CreateBuilder(args);
@@ -13,9 +14,14 @@ builder.Services.AddDefaultIdentity<VegAppUser>(options => options.SignIn.Requir
     .AddEntityFrameworkStores<VegAppContext>();
 
 // Add services to the container.
-builder.Services.AddRazorPages();
 
+
+builder.Services.AddRazorPages();
+builder.Services.AddScoped<UserProvider>();
+builder.Services.AddScoped<PersonalizedRecommendation>();
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

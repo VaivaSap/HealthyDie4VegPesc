@@ -26,19 +26,18 @@ namespace VegApp.Pages
 
 
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
             if (_context.EatenProducts != null)
             {
                 eatenProduct = _context.EatenProducts
 
                     .Include(j => j.Product)
-
                     .OrderBy(p => p.DateWhenEaten)
                     .Select(z => new EatenProductDisplay(z))
                     .AsEnumerable()
                     .GroupBy(o => o.DateWhenEatenForDisplay)
-                    .ToList();
+                    .ToList();  
             }
 
         }
