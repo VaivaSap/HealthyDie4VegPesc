@@ -16,7 +16,7 @@ namespace VegApp.Areas.Identity.Data
 
         public enum Group { get, set, }
 
-        public List<Product> Products { get; set; } = new List<Product>();
+       public List<Product> Products { get; set; } = new List<Product>();
 
 
 

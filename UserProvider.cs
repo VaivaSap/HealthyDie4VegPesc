@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using VegApp.Areas.Identity.Data;
 using VegApp.Data;
-using static VegApp.UserProvider;
+
 
 namespace VegApp
 {

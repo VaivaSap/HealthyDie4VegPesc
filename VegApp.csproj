@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+	  <Folder Include="Data\" /> 
   </ItemGroup>
 
   <ItemGroup>
@@ -16,11 +17,16 @@
     <None Include="wwwroot\Images\3.jpg" />
     <None Include="wwwroot\Images\4.jpg" />
     <None Include="wwwroot\Images\5.jpg" />
+	  <None Update="ProductsToImport.csv">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="FusionCharts.Visualization" Version="1.0.7" />
+    <PackageReference Include="IronXL.Excel" Version="2023.6.4" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />

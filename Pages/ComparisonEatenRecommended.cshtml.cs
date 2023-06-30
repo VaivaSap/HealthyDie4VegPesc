@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using VegApp.Areas.Identity.Data;
 using VegApp.Data;
+using VegApp.Entities;
 
 namespace VegApp.Pages
 {
     public class CompareEatenRecommendedModel : PageModel
     {
 
-        private readonly ILogger<IndexModel> _logger;
-
         private readonly VegAppContext _vegAppContext;
+
+        private readonly PersonalizedRecommendation _personalizedRecommendation;
 
         [BindProperty]
         public decimal DailyProteins { get; set; }
@@ -22,24 +23,16 @@ namespace VegApp.Pages
         [BindProperty]
         public decimal DailyCalories { get; set; }
         [BindProperty]
-
-        public decimal RecommendedDailyProteins { get; set; }
+        public Recommendation Recommendation { get; set; }
+     
         [BindProperty]
-
-        public decimal RecommendedDailyFats { get; set; }
-
-        [BindProperty]
-        public decimal RecommendedDailyCarbs { get; set; }
-        [BindProperty]
-        public decimal RecommendedDailyCalories { get; set; }
-        [BindProperty]
-
         public VegAppUser VegAppUser { get; set; }
 
-        public CompareEatenRecommendedModel(VegAppContext vegAppContext)
+        public CompareEatenRecommendedModel(VegAppContext vegAppContext, PersonalizedRecommendation personalizedRecommendation)
         {
 
             _vegAppContext = vegAppContext;
+            _personalizedRecommendation = personalizedRecommendation;
 
         }
 
@@ -54,12 +47,8 @@ namespace VegApp.Pages
             DailyFats = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.FatsIn100g * e.Amount / 100);
             DailyCalories = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.CaloriesIn100g * e.Amount / 100);
 
-            //Dummy data
-            RecommendedDailyProteins = 10;
-            RecommendedDailyFats = 15;
-            RecommendedDailyCarbs = 20;
-            RecommendedDailyCalories = 2200;
 
+            Recommendation = _personalizedRecommendation.CategorizePerson();
 
 
         }

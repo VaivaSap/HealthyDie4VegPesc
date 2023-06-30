@@ -13,6 +13,8 @@ builder.Services.AddDbContext<VegAppContext>(options =>
 builder.Services.AddDefaultIdentity<VegAppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<VegAppContext>();
 
+ProductImporter.ImportProduct();
+
 // Add services to the container.
 
 

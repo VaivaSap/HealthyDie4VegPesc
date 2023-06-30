@@ -48,7 +48,7 @@ namespace VegApp.Pages.products
                 return Page();
             }
 
-            _context.Attach(Product).State = EntityState.Modified;
+            _context.Attach((Entities.Product)Product).State = EntityState.Modified;
 
             try
             {

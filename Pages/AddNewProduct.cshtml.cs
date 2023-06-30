@@ -42,7 +42,7 @@ namespace VegApp.Pages
 
             var user = _vegAppContext.Users.FirstOrDefault(x => x.Id == id);
 
-            var product = new Product()
+            var product = new Entities.Product()
             {
                 Id = Guid.NewGuid(),
                 ProductName = Title,
