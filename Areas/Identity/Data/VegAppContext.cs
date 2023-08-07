@@ -29,5 +29,7 @@ public class VegAppContext : IdentityDbContext<VegAppUser, UserRole, Guid>
         builder.Entity<Product>().HasMany(p => p.EatenProducts).WithOne(g => g.Product);
 
     }
+
+   // public DbSet su Imported products?
 }
 

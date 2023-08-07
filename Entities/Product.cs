@@ -14,7 +14,7 @@ namespace VegApp.Entities
 
         public decimal CaloriesIn100g { get; set; }
 
-        public VegAppUser VegAppUser { get; set; }
+        public VegAppUser? VegAppUser { get; set; }
 
         public List<EatenProduct> EatenProducts { get; set; }
 
