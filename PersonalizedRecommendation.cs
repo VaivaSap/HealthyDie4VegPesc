@@ -20,7 +20,7 @@ namespace VegApp
 
         public Recommendation CategorizePerson()
         {
-            var person = _userProvider.GetCurrenttUser();
+            var person = _userProvider.GetCurrentUser();
 
             if (person.Gender == GenderEnum.Female)
             {

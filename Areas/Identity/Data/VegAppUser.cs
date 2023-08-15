@@ -5,6 +5,8 @@ namespace VegApp.Areas.Identity.Data
 {
     public class VegAppUser : IdentityUser<Guid>
     {
+        internal static readonly object UserProvider;
+
         public string Name { get; set; }
         public DietaryPreferencesEnum DietPreference { get; set; }
 

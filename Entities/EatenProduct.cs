@@ -20,6 +20,8 @@ namespace VegApp
 
         public int Amount { get; set; }
 
+        public Guid VegAppUserId { get; set; }
+
 
     }
 }

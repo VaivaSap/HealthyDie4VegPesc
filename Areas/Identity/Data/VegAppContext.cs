@@ -24,12 +24,11 @@ public class VegAppContext : IdentityDbContext<VegAppUser, UserRole, Guid>
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<VegAppUser>().HasMany(u => u.Products).WithOne(c => c.VegAppUser);
+        builder.Entity<VegAppUser>().HasMany(u => u.Products).WithOne(c => c.VegAppUser); 
 
         builder.Entity<Product>().HasMany(p => p.EatenProducts).WithOne(g => g.Product);
 
     }
 
-   // public DbSet su Imported products?
 }
 

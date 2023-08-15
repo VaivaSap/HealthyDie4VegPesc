@@ -42,10 +42,10 @@ namespace VegApp.Pages
             Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid id);
 
 
-            DailyProteins = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.ProteinsIn100g * e.Amount / 100);
-            DailyCarbs = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.CarbsIn100g * e.Amount / 100);
-            DailyFats = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.FatsIn100g * e.Amount / 100);
-            DailyCalories = _vegAppContext.EatenProducts.Where(u => u.Product.VegAppUser.Id == id).Sum(e => e.Product.CaloriesIn100g * e.Amount / 100);
+            DailyProteins = _vegAppContext.EatenProducts.Where(u => u.VegAppUserId == id).Sum(e => e.Product.ProteinsIn100g * e.Amount / 100);
+            DailyCarbs = _vegAppContext.EatenProducts.Where(u => u.VegAppUserId == id).Sum(e => e.Product.CarbsIn100g * e.Amount / 100);
+            DailyFats = _vegAppContext.EatenProducts.Where(u => u.VegAppUserId == id).Sum(e => e.Product.FatsIn100g * e.Amount / 100);
+            DailyCalories = _vegAppContext.EatenProducts.Where(u => u.VegAppUserId == id).Sum(e => e.Product.CaloriesIn100g * e.Amount / 100);
 
 
             Recommendation = _personalizedRecommendation.CategorizePerson();

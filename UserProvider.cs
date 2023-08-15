@@ -23,7 +23,7 @@ namespace VegApp
             return Guid.Parse(_httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier));
         }
 
-        public VegAppUser GetCurrenttUser() 
+        public VegAppUser GetCurrentUser() 
         {
             return _vegAppContext.Users.FirstOrDefault(o => o.Id == GetCurrentUserId());
         }

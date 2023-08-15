@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
+using VegApp.Areas.Identity.Data;
 using VegApp.Data;
 using VegApp.Entities;
 
@@ -13,6 +14,7 @@ namespace VegApp.Pages
         private readonly ILogger<IndexModel> _logger;
 
         private readonly VegAppContext _vegAppContext;
+        private readonly UserProvider _userProvider;
 
         [BindProperty]
         public Guid SelectedProductId { get; set; }
@@ -27,10 +29,11 @@ namespace VegApp.Pages
 
 
         //Dependency injection (constructor with parameters)
-        public IndexModel(ILogger<IndexModel> logger, VegAppContext vegAppContext)
+        public IndexModel(ILogger<IndexModel> logger, VegAppContext vegAppContext, UserProvider userProvider)
         {
             _logger = logger;
             _vegAppContext = vegAppContext;
+            _userProvider = userProvider;
         }
 
 
@@ -38,7 +41,7 @@ namespace VegApp.Pages
         {
 
             Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid id);
-            Products = _vegAppContext.Products.Where(u => u.VegAppUser.Id == id).ToList();
+            Products = _vegAppContext.Products.Where(u => u.VegAppUser.Id == id || u.VegAppUser == null).ToList();
             DateWhenEaten = DateTime.Today;
 
         }
@@ -53,8 +56,9 @@ namespace VegApp.Pages
                 EatenProductId = Guid.NewGuid(),
                 Product = _vegAppContext.Products.FirstOrDefault(s => s.Id == SelectedProductId),
                 DateWhenEaten = DateWhenEaten,
-
                 Amount = Amount,
+                VegAppUserId = _userProvider.GetCurrentUserId(),
+
 
             };
 
